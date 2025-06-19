@@ -1,6 +1,3 @@
-Certainly. Here's a clean, professional `README.md` you can use for your GitHub repository:
-
----
 
 # Kotaib – Minimal Vue.js Bookstore Interface
 
