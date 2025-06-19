@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kotaib</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <script src="./vue3.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="book-store">
+      <nav class="navbar">
+        <button @click="booklist()" class="nav-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="icon icon-tabler icons-tabler-filled icon-tabler-book"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M21.5 5.134a1 1 0 0 1 .493 .748l.007 .118v13a1 1 0 0 1 -1.5 .866a8 8 0 0 0 -7.5 -.266v-15.174a10 10 0 0 1 8.5 .708m-10.5 -.707l.001 15.174a8 8 0 0 0 -7.234 .117l-.327 .18l-.103 .044l-.049 .016l-.11 .026l-.061 .01l-.117 .006h-.042l-.11 -.012l-.077 -.014l-.108 -.032l-.126 -.056l-.095 -.056l-.089 -.067l-.06 -.056l-.073 -.082l-.064 -.089l-.022 -.036l-.032 -.06l-.044 -.103l-.016 -.049l-.026 -.11l-.01 -.061l-.004 -.049l-.002 -13.068a1 1 0 0 1 .5 -.866a10 10 0 0 1 8.5 -.707"
+            />
+          </svg>
+          Kotaib
+        </button>
+        <button @click="bookcart()" class="nav-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="icon icon-tabler icons-tabler-filled icon-tabler-bookmarks"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 6a4 4 0 0 1 4 4v11a1 1 0 0 1 -1.514 .857l-4.486 -2.691l-4.486 2.691a1 1 0 0 1 -1.508 -.743l-.006 -.114v-11a4 4 0 0 1 4 -4h4z"
+            />
+            <path
+              d="M16 2a4 4 0 0 1 4 4v11a1 1 0 0 1 -2 0v-11a2 2 0 0 0 -2 -2h-5a1 1 0 0 1 0 -2h5z"
+            />
+          </svg>
+        </button>
+      </nav>
+      <div class="booklist" v-if="state==true">
+        <div v-for="book in books" class="book-card">
+          <img :src="book.image" alt="Book Cover" class="book-img" />
+          <h2 class="book-title">Title: {{book.Name}}</h2>
+          <p class="book-description">{{book.description}}</p>
+          <p class="book-category">Category:{{book.category}}</p>
+          <p class="book-author">Author:{{book.author}}</p>
+          <p class="book-isbn">ISBN: {{book.ISBN}}</p>
+          <p>
+            <span class="book-pages">{{book.numberofpage}} page</span>
+            <span class="book-price">{{book.price}}$</span>
+          </p>
+          <p>
+            <button @click="addToWhishlist(book)" class="add-to-cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="icon icon-tabler icons-tabler-filled icon-tabler-bookmarks"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 6a4 4 0 0 1 4 4v11a1 1 0 0 1 -1.514 .857l-4.486 -2.691l-4.486 2.691a1 1 0 0 1 -1.508 -.743l-.006 -.114v-11a4 4 0 0 1 4 -4h4z"
+                />
+                <path
+                  d="M16 2a4 4 0 0 1 4 4v11a1 1 0 0 1 -2 0v-11a2 2 0 0 0 -2 -2h-5a1 1 0 0 1 0 -2h5z"
+                />
+              </svg>
+            </button>
+          </p>
+        </div>
+      </div>
+      <div class="cart" v-else>
+        <div v-if="wishbooks.length==0">
+          <img src="./images/404 error.svg" alt="..." />
+        </div>
+        <table v-else class="cart-table">
+          <thead>
+            <tr>
+              <th>ISBN</th>
+              <th>Name</th>
+              <th>Author</th>
+              <th>Category</th>
+              <th>price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="book in wishbooks">
+              <td>{{book.ISBN}}</td>
+              <td>{{book.Name}}</td>
+              <td>{{book.author}}</td>
+              <td>{{book.category}}</td>
+              <td>{{book.price}}</td>
+              <td>
+                <button @click="deletfromWishlist(book)" class="add-to-cart">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-http-delete"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 8v8h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2z" />
+                    <path d="M14 8h-4v8h4" />
+                    <path d="M10 12h2.5" />
+                    <path d="M17 8v8h4" />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./books.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data: () => ({
+          books: books,
+          state: true,
+          wishbooks: [],
+        }),
+        methods: {
+          booklist() {
+            //this ya nada
+            this.state = true;
+          },
+          bookcart() {
+            this.state = false;
+          },
+          addToWhishlist(book) {
+            this.wishbooks.push(book);
+            let s = new Set(this.wishbooks);
+            this.wishbooks = [...s];
+            console.log(book);
+          },
+          deletfromWishlist(book) {
+            this.wishbooks = this.wishbooks.filter((b) => b.ISBN != book.ISBN);
+            console.log(this.wishbooks);
+          },
+        },
+      });
+      app.mount("#book-store");
+    </script>
+  </body>
+</html>

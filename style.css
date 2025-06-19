@@ -1,0 +1,217 @@
+body {
+  margin: 0;
+  font-family: "Goudy Bookletter 1911", Georgia, serif;
+  color: #4a3d29;
+  background: #f5ecd2
+    url("https://cdn.pixabay.com/photo/2017/04/04/04/09/medieval-2119675_1280.jpg")
+    center center / cover fixed;
+}
+
+.booklist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px;
+}
+
+.book-card {
+  background: #fff5cc;
+  border: 5px solid #4a3d29;
+  padding: 20px;
+  box-shadow: 0 10px 15px -5px black;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border-radius: 10px;
+}
+
+.book-card::before {
+  content: "";
+  background: url("https://cdn.pixabay.com/photo/2016/04/24/04/04/parchment-1169869_1280.jpg")
+    center center / cover;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  bottom: -10px;
+  right: -10px;
+  z-index: -1;
+  filter: sepia(100%) brightness(0.9);
+  border-radius: 15px;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px black;
+}
+
+.book-img {
+  max-width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #4a3d29;
+  border-radius: 5px;
+}
+
+.book-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2e2009;
+  text-shadow: 1px 1px 2px black;
+}
+
+.book-category,
+.book-author,
+.book-isbn,
+.book-pages,
+.book-description,
+.book-price {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #5c4a31;
+}
+
+.book-description {
+  font-style: italic;
+  color: #3e2e15;
+}
+
+.book-price {
+  font-weight: bold;
+  color: #8b0000;
+}
+.book-card p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #5c4a31;
+}
+
+.book-card p .book-pages {
+  color: #3e2e15;
+}
+
+.book-card p .book-price {
+  font-weight: bold;
+  color: #8b0000;
+}
+
+.add-to-cart {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ffefbb;
+  color: #4a3d29;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: 3px solid #4a3d29;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -2px black;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: "Goudy Bookletter 1911", Georgia, serif;
+}
+
+.add-to-cart:hover {
+  background: #f5e0a1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -3px black;
+}
+
+.add-to-cart:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -2px black;
+}
+
+/*Navbar*/
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  background: #fff5cc;
+  border-bottom: 5px solid #4a3d29;
+  box-shadow: 0 5px 10px -5px black;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: "Goudy Bookletter 1911", Georgia, serif;
+}
+
+.navbar .nav-button {
+  text-decoration: none;
+  color: #4a3d29;
+  background: #ffefbb;
+  padding: 10px 20px;
+  border: 3px solid #4a3d29;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px -2px black;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.navbar .nav-button:hover {
+  background: #f5e0a1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -3px black;
+}
+
+/*cart page*/
+.cart {
+  padding: 40px;
+  background: #fff5cc;
+  border: 5px solid #4a3d29;
+  box-shadow: 0 10px 15px -5px black;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  font-family: "Goudy Bookletter 1911", Georgia, serif;
+}
+
+.cart h2 {
+  color: #2e2009;
+  text-shadow: 1px 1px 2px black;
+  margin-bottom: 20px;
+  font-size: 1.7rem;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #5c4a31;
+  font-size: 1.1rem;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 3px solid #4a3d29;
+  padding: 15px;
+  text-align: center;
+  background: #ffefbb;
+}
+
+.cart-table thead th {
+  background: #f5e0a1;
+  font-weight: bold;
+  color: #2e2009;
+}
+
+.cart-table tfoot td {
+  font-weight: bold;
+  color: #8b0000;
+  background: #f5e0a1;
+}
+
+@media (max-width: 900px) {
+  .booklist {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .booklist {
+    grid-template-columns: 1fr;
+  }
+}
